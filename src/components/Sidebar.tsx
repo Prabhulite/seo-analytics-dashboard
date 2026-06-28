@@ -1,15 +1,16 @@
 import { LayoutDashboard, Search, Link2, FileText, Globe, Settings } from "lucide-react";
+import type { View } from "../App";
 
-const nav = [
-  { icon: LayoutDashboard, label: "Overview", active: true },
-  { icon: Search, label: "Keywords" },
-  { icon: Link2, label: "Backlinks" },
-  { icon: FileText, label: "Content" },
-  { icon: Globe, label: "Site Audit" },
-  { icon: Settings, label: "Settings" },
+const nav: { id: View; icon: typeof LayoutDashboard; label: string }[] = [
+  { id: "overview", icon: LayoutDashboard, label: "Overview" },
+  { id: "keywords", icon: Search, label: "Keywords" },
+  { id: "backlinks", icon: Link2, label: "Backlinks" },
+  { id: "content", icon: FileText, label: "Content" },
+  { id: "audit", icon: Globe, label: "Site Audit" },
+  { id: "settings", icon: Settings, label: "Settings" },
 ];
 
-export function Sidebar() {
+export function Sidebar({ active, onSelect }: { active: View; onSelect: (v: View) => void }) {
   return (
     <aside className="hidden w-60 shrink-0 flex-col border-r border-white/5 bg-[#0e131d] p-4 md:flex">
       <div className="flex items-center gap-2 px-2 py-3">
@@ -24,18 +25,18 @@ export function Sidebar() {
 
       <nav className="mt-6 space-y-1">
         {nav.map((n) => (
-          <a
-            key={n.label}
-            href="#"
-            className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
-              n.active
+          <button
+            key={n.id}
+            onClick={() => onSelect(n.id)}
+            className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
+              active === n.id
                 ? "bg-indigo-500/15 text-indigo-300"
                 : "text-gray-400 hover:bg-white/5 hover:text-gray-200"
             }`}
           >
             <n.icon className="size-4" />
             {n.label}
-          </a>
+          </button>
         ))}
       </nav>
 

@@ -72,3 +72,55 @@ export const keywords: Keyword[] = [
 ];
 
 export const COLORS = ["#6366f1", "#22d3ee", "#34d399", "#f59e0b", "#f472b6"];
+
+export type ReferringDomain = {
+  domain: string;
+  authority: number;
+  links: number;
+  type: "Dofollow" | "Nofollow";
+};
+
+export const referringDomains: ReferringDomain[] = [
+  { domain: "medium.com", authority: 96, links: 18, type: "Dofollow" },
+  { domain: "techcrunch.com", authority: 93, links: 14, type: "Dofollow" },
+  { domain: "reddit.com", authority: 91, links: 21, type: "Nofollow" },
+  { domain: "smashingmagazine.com", authority: 90, links: 9, type: "Dofollow" },
+  { domain: "producthunt.com", authority: 89, links: 6, type: "Dofollow" },
+  { domain: "dev.to", authority: 88, links: 32, type: "Dofollow" },
+  { domain: "hashnode.com", authority: 78, links: 11, type: "Nofollow" },
+];
+
+export type ContentPage = {
+  title: string;
+  path: string;
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  position: number;
+};
+
+export const contentPages: ContentPage[] = [
+  { title: "The Complete SEO Guide", path: "/blog/seo-guide", clicks: 8420, impressions: 142000, ctr: 5.9, position: 3.2 },
+  { title: "Keyword Research 101", path: "/blog/keyword-research", clicks: 6210, impressions: 98000, ctr: 6.3, position: 4.1 },
+  { title: "Technical SEO Checklist", path: "/blog/technical-seo", clicks: 4870, impressions: 76000, ctr: 6.4, position: 5.0 },
+  { title: "Link Building Strategies", path: "/blog/link-building", clicks: 3960, impressions: 64000, ctr: 6.2, position: 6.3 },
+  { title: "Core Web Vitals Explained", path: "/blog/core-web-vitals", clicks: 3120, impressions: 51000, ctr: 6.1, position: 7.4 },
+];
+
+export type AuditIssue = {
+  title: string;
+  severity: "Error" | "Warning" | "Notice";
+  count: number;
+  description: string;
+};
+
+export const auditScore = 78;
+
+export const auditIssues: AuditIssue[] = [
+  { title: "Pages with missing meta description", severity: "Error", count: 12, description: "Meta descriptions help search engines and users understand your pages." },
+  { title: "Broken internal links (4xx)", severity: "Error", count: 5, description: "Broken links hurt crawlability and user experience." },
+  { title: "Images missing alt text", severity: "Warning", count: 34, description: "Alt text improves accessibility and image search ranking." },
+  { title: "Slow pages (LCP > 2.5s)", severity: "Warning", count: 8, description: "Largest Contentful Paint affects your Core Web Vitals." },
+  { title: "Duplicate title tags", severity: "Warning", count: 6, description: "Unique titles help pages rank for distinct queries." },
+  { title: "Pages without an H1", severity: "Notice", count: 9, description: "A clear H1 signals the main topic of a page." },
+];
